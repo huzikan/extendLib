@@ -7,9 +7,10 @@
 namespace Util\Misc;
 use Util;
 
-class SimpleExcel {
-    //数据转换临时目录
-    const TMP_FILE_DIR = './';
+class SimpleExcel
+{
+	//数据转换临时目录
+	const TMP_FILE_DIR = './';
 
     //最大读取字符串长度(2M)
     const MAX_LEN = 2097152;
@@ -50,7 +51,8 @@ class SimpleExcel {
         'percent'   =>'#0.00%',
     );
 
-    public function __construct($styleOption = array()) {
+	public function __construct($styleOption = array())
+	{
         //设置xls样式配置项
         if (!empty($styleOption)) {
             $styleKeyMap = array_keys($this->styleOption);
@@ -66,7 +68,8 @@ class SimpleExcel {
      * 设置导出文件名
      * @param string $name 文件名
      */
-    public function setFileName($name) {
+	public function setFileName($name)
+	{
         if (!empty($name)) {
             $this->fileName = $name;
             $this->tmpFile = self::TMP_FILE_DIR . $name . '.tmp';
@@ -81,7 +84,8 @@ class SimpleExcel {
      *
      * @param array $columnValue 行数据数组
      */
-    public function setXlsHeader($headerMap) {
+	public function setXlsHeader($headerMap)
+	{
         if (empty($headerValue)) {
             $this->headerMap = $headerMap;
             $this->headerStr = $this->formatXlsColumn($headerMap, true);
@@ -98,7 +102,8 @@ class SimpleExcel {
      * @param array $columnList 行数据数组
      * @param bool              设置结果
      */
-    public function setXlsColumn($columnList) {
+	public function setXlsColumn($columnList)
+	{
         if (empty($columnList)) {
             return false;
         }
@@ -124,7 +129,8 @@ class SimpleExcel {
     /**
      * 导出数据文件
      */
-    public function exportXlsData() {
+	public function exportXlsData()
+	{
         header("Content-type:application/vnd.ms-excel");
         header("Content-Disposition:attachment;filename={$this->fileName}.xls");
         echo "<table width='100%' border='1'>";
@@ -150,7 +156,8 @@ class SimpleExcel {
      * @param  boolean $isHeader    是否为表头
      * @return string $formatStr    格式化字符串
      */
-    private function formatXlsColumn($columnValue, $isHeader = false) {
+	private function formatXlsColumn($columnValue, $isHeader = false)
+	{
         if (empty($columnValue)) {
             return '';
         }
@@ -169,7 +176,8 @@ class SimpleExcel {
         return $formatStr;
     }
 
-    public function __destruct() {
+	public function __destruct()
+	{
         //删除临时存储文件
         if (file_exists($this->tmpFile)) {
             unlink($this->tmpFile);
