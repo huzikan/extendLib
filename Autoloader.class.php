@@ -12,16 +12,17 @@ class AutoLoader
      * @param string $className
      * @return boolean
      */
-	public static function loadClass($className) {
+    public static function loadClass($className)
+    {
         //去除左侧根目录命名空间
         $className = ltrim($className, '\\');
-	    //扩展目录
+        //扩展目录
         if (strpos($className, 'Util') !== false) {
             $filePath = self::toPath($className);
             $filePath = str_replace('Util', PHP_PLUGINS_ROOT, $filePath);
             self::loadFile($filePath);
         }
-	}
+    }
 
     /**
      * convert class name to file path
@@ -29,7 +30,8 @@ class AutoLoader
      * @param string $className
      * @return mixed
      */
-    private static function toPath($className) {
+    private static function toPath($className)
+    {
         return str_replace(array('\\'), DIRECTORY_SEPARATOR, $className) . '.class.php';
     }
     
@@ -39,7 +41,8 @@ class AutoLoader
      * @param string $path
      * @return boolean
      */
-    public static function loadFile($path) {
+    public static function loadFile($path)
+    {
         if(!file_exists($path)) {
             return false;
         }
