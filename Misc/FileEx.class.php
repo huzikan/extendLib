@@ -1,7 +1,6 @@
 <?php
 /**
  * Date     :2015-09-11
- * Contact  :huzikan@zbj.com  
  */
 
 namespace Util\Misc;

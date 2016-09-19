@@ -1,7 +1,6 @@
 <?php
 /*
  * mongo operate methods class
- * @author huzikan@zbj.com
  */
 
 namespace Util\Cache;
